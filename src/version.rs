@@ -185,6 +185,11 @@ impl Version {
         self.flag(curl_sys::CURL_VERSION_GSASL)
     }
 
+    /// Returns whether libcurl API is thread-safe
+    pub fn feature_threadsafe(&self) -> bool {
+        self.flag(curl_sys::CURL_VERSION_THREADSAFE)
+    }
+
     fn flag(&self, flag: c_int) -> bool {
         unsafe { (*self.inner).features & flag != 0 }
     }

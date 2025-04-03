@@ -120,6 +120,14 @@ pub fn init() {
     });
 }
 
+fn maybe_lazy_init() {
+    let lazy_init = cfg!(feature = "lazy-init") && Version::get().feature_threadsafe();
+
+    if !lazy_init {
+        init();
+    }
+}
+
 /// An exported constructor function. On supported platforms, this will be
 /// invoked automatically before the program's `main` is called. This is done
 /// for the convenience of library users since otherwise the thread-safety rules
@@ -144,7 +152,7 @@ pub static INIT_CTOR: extern "C" fn() = {
         link_section = ".text.startup"
     )]
     extern "C" fn init_ctor() {
-        init();
+        maybe_lazy_init();
     }
 
     init_ctor

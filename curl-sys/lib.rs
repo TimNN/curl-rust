@@ -933,6 +933,7 @@ pub const CURL_VERSION_ZSTD: c_int = 1 << 26;
 pub const CURL_VERSION_UNICODE: c_int = 1 << 27;
 pub const CURL_VERSION_HSTS: c_int = 1 << 28;
 pub const CURL_VERSION_GSASL: c_int = 1 << 29;
+pub const CURL_VERSION_THREADSAFE: c_int = 1 << 30;
 
 pub const CURLPAUSE_RECV: c_int = 1 << 0;
 pub const CURLPAUSE_RECV_CONT: c_int = 0;
